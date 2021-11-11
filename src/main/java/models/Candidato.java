@@ -1,11 +1,18 @@
 package models;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+
+import java.util.Date;
 
 
 @Entity
@@ -21,11 +28,19 @@ public class Candidato {
     private Long idCandidato;
 
     private String nombre;
+
     private String apellido;
-    private String tipoDNI; // HACER ENUM
+
+    @Column(name= "tipo_dni")
+    private TipoDNI tipoDNI;
+
+    @NotNull
     private String dni;
-    private String fechaNacimiento;
-    private List <Tecnologia> tecnologias;
+
+    @NotNull
+    @Column(name= "fecha_nacimiento", nullable = false)
+    private Date fechaNacimiento;
+
 
 
 }
