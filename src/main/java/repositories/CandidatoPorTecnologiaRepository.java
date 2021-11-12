@@ -1,6 +1,6 @@
 package repositories;
 
-import models.CandidatoPorTecnologia;
+import models.enitities.CandidatoPorTecnologia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

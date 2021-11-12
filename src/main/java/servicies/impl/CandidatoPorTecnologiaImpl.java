@@ -1,12 +1,15 @@
 package servicies.impl;
 
-import models.CandidatoPorTecnologia;
+import models.enitities.CandidatoPorTecnologia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import repositories.CandidatoPorTecnologiaRepository;
+import servicies.CandidatoPorTecnologiaService;
 
 import java.util.List;
 
-public class CandidatoPorTecnologiaImpl {
+@Service
+public class CandidatoPorTecnologiaImpl implements CandidatoPorTecnologiaService {
 
     @Autowired
     CandidatoPorTecnologiaRepository candidatoPorTecnologiaRepository;

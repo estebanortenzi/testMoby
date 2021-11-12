@@ -1,10 +1,10 @@
-package views;
+package models.views;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import models.TipoDNI;
+import models.enums.TipoDNI;
 
 import java.util.Date;
 
