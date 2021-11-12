@@ -1,22 +1,22 @@
-package servicies.impl;
+package com.example.demo.servicies.impl;
 
-import exceptions.CandidatoNoEncontrado;
-import models.enitities.Candidato;
-import models.enitities.Tecnologia;
-import models.views.CandidatoDTO;
+import com.example.demo.exceptions.CandidatoNoEncontrado;
+import com.example.demo.models.enitities.Candidato;
+import com.example.demo.models.views.CandidatoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.CandidatoRepository;
-import servicies.CandidatoServicie;
+import com.example.demo.repositories.CandidatoRepository;
+import com.example.demo.servicies.CandidatoService;
 
 import java.util.List;
 
 @Service
-public class CandidatoServiceImpl implements CandidatoServicie {
+public class CandidatoServiceImpl implements CandidatoService {
 
     @Autowired
     CandidatoRepository candidatoRepository;
 
+    // el .save sabe distinguir si es un candidato nuevo. Si lo es, le agrega ID, sino la modifica
     public void guardarCandidato(CandidatoDTO candidatoDTO){
 
         Candidato candidato = Candidato.builder()
@@ -43,21 +43,16 @@ public class CandidatoServiceImpl implements CandidatoServicie {
                 .orElseThrow(() -> new CandidatoNoEncontrado("No se encontró el candidato")); //Supplier, no recibe parametros porque es un proveedor
     }
 
-    public Candidato modificarCandidato(CandidatoDTO candidatoDTO){
-        Candidato candidatoBuscado = this.buscarCandidatoPorId(candidatoDTO.getIdCandidato());
+    /*
+    public List<Candidato> findByTecnologia(String tecnologia) {
+        List<Candidato> candidatos = candidatoRepository.findByTecnologia(tecnologia);
 
-        candidatoBuscado.setNombre(candidatoDTO.getNombre());
-        candidatoBuscado.setApellido(candidatoDTO.getApellido());
-        candidatoBuscado.setTipoDNI(candidatoDTO.getTipoDNI());
-        candidatoBuscado.setDni(candidatoDTO.getDni());
-        candidatoBuscado.setFechaNacimiento(candidatoDTO.getFechaNacimiento());
+        for (Candidato cand: candidatos){
 
-        return candidatoRepository.save(candidatoBuscado);
+        }
+
+        return null;
     }
-
-    public List<Candidato> findByTecnologia(Tecnologia tecnologia) {
-        return candidatoRepository.findByTecnologia(tecnologia);
-    }
-
+*/
 
 }

@@ -1,6 +1,6 @@
-package repositories;
+package com.example.demo.repositories;
 
-import models.enitities.Tecnologia;
+import com.example.demo.models.enitities.Tecnologia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

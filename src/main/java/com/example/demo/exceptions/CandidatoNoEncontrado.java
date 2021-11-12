@@ -1,4 +1,4 @@
-package exceptions;
+package com.example.demo.exceptions;
 
 import javax.persistence.PersistenceException;
 

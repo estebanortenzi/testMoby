@@ -1,7 +1,6 @@
-package servicies;
+package com.example.demo.servicies;
 
-import models.enitities.CandidatoPorTecnologia;
-import org.springframework.stereotype.Service;
+import com.example.demo.models.enitities.CandidatoPorTecnologia;
 
 import java.util.List;
 

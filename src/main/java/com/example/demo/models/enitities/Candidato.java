@@ -1,22 +1,15 @@
-package models.enitities;
+package com.example.demo.models.enitities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import models.enums.TipoDNI;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 
 @Entity
@@ -40,8 +33,9 @@ public class Candidato implements Serializable{
     @NotEmpty(message = "completar apellido")
     private String apellido;
 
-    @NotEmpty(message = "completar TipoDNI")
-    @Column(name= "tipo_dni")
+    @NotEmpty(message = "completar el tipo de DNI")
+    @JoinColumn(name = "id_tipo_dni", referencedColumnName = "id_tipo_dni")
+    @OneToOne
     private TipoDNI tipoDNI;
 
     @NotEmpty(message = "completar DNI")
@@ -50,7 +44,5 @@ public class Candidato implements Serializable{
     @NotEmpty(message = "completar fecha de nacimiento")
     @Column(name= "fecha_nacimiento")
     private Date fechaNacimiento;
-
-    private List<Tecnologia> tecnologias;
 
 }

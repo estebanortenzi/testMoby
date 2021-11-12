@@ -1,4 +1,4 @@
-package models.enitities;
+package com.example.demo.models.enitities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Data
@@ -23,7 +24,9 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "candidato_x_tecnologia")
-public class CandidatoPorTecnologia {
+public class CandidatoPorTecnologia implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

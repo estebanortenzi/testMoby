@@ -1,12 +1,12 @@
-package servicies.impl;
+package com.example.demo.servicies.impl;
 
-import exceptions.TecnologiaNoEncontrada;
-import models.enitities.Tecnologia;
-import models.views.TecnologiaDTO;
+import com.example.demo.exceptions.TecnologiaNoEncontrada;
+import com.example.demo.models.enitities.Tecnologia;
+import com.example.demo.models.views.TecnologiaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.TecnologiaRepository;
-import servicies.TecnologiaService;
+import com.example.demo.repositories.TecnologiaRepository;
+import com.example.demo.servicies.TecnologiaService;
 
 import java.util.List;
 
@@ -16,10 +16,9 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     @Autowired
     TecnologiaRepository tecnologiaRepository;
 
-
+    // el .save sabe distinguir si es una tecnologia nueva. Si lo es, le agrega ID, sino la modifica
     public void guardarTecnologia(TecnologiaDTO tecnologiaDTO){
         Tecnologia tecnologia = Tecnologia.builder()
-                .tipoTecnologia(tecnologiaDTO.getTipoTecnologia())
                 .version(tecnologiaDTO.getVersion())
                 .build();
 
@@ -39,15 +38,6 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     public Tecnologia buscarTecnologiaPorId(Long idTecnologia){
         return tecnologiaRepository.findById(idTecnologia)
                 .orElseThrow(()-> new TecnologiaNoEncontrada("No se encontro la tecnologia"));
-    }
-
-    public Tecnologia modificarTecnologia(TecnologiaDTO tecnologiaDTO){
-        Tecnologia tecnologiaBuscada = this.buscarTecnologiaPorId(tecnologiaDTO.getIdTecnologia());
-
-        tecnologiaBuscada.setTipoTecnologia(tecnologiaDTO.getTipoTecnologia());
-        tecnologiaBuscada.setVersion(tecnologiaDTO.getVersion());
-
-        return tecnologiaRepository.save(tecnologiaBuscada);
     }
 
 }

@@ -1,9 +1,8 @@
-package models.views;
+package com.example.demo.models.views;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import models.enums.TipoTecnologia;
 
 @Data
 @AllArgsConstructor
@@ -11,8 +10,6 @@ import models.enums.TipoTecnologia;
 public class TecnologiaDTO {
 
     private Long idTecnologia;
-
-    private TipoTecnologia tipoTecnologia;
 
     private String version;
 

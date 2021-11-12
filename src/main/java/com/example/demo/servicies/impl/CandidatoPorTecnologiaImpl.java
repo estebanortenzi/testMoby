@@ -1,10 +1,10 @@
-package servicies.impl;
+package com.example.demo.servicies.impl;
 
-import models.enitities.CandidatoPorTecnologia;
+import com.example.demo.models.enitities.CandidatoPorTecnologia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.CandidatoPorTecnologiaRepository;
-import servicies.CandidatoPorTecnologiaService;
+import com.example.demo.repositories.CandidatoPorTecnologiaRepository;
+import com.example.demo.servicies.CandidatoPorTecnologiaService;
 
 import java.util.List;
 

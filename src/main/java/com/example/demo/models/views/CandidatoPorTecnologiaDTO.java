@@ -1,7 +1,7 @@
-package models.views;
+package com.example.demo.models.views;
 
-import models.enitities.Candidato;
-import models.enitities.Tecnologia;
+import com.example.demo.models.enitities.Candidato;
+import com.example.demo.models.enitities.Tecnologia;
 
 public class CandidatoPorTecnologiaDTO {
 
