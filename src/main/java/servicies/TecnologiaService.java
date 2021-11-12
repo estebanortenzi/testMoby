@@ -1,19 +1,20 @@
 package servicies;
 
 import models.enitities.Tecnologia;
+import models.views.TecnologiaDTO;
 
 import java.util.List;
 
 public interface TecnologiaService {
 
-    Tecnologia guardarTecnologia(Tecnologia tecnologia);
+    void guardarTecnologia(TecnologiaDTO tecnologiaDTO);
 
-    List<Tecnologia> obtenerTecnologia();
+    List<Tecnologia> obtenerTecnologias();
 
-    void eliminarTecnologia(Tecnologia tecnologia);
+    void eliminarTecnologiaPorId(Long idTecnologia);
 
-    Tecnologia buscarTecnologiaPorId(Tecnologia tecnologia);
+    Tecnologia buscarTecnologiaPorId(Long idTecnologia);
 
-    Tecnologia modificarTecnologia(Tecnologia tecnologia);
+    Tecnologia modificarTecnologia(TecnologiaDTO tecnologiaDTO);
 
 }

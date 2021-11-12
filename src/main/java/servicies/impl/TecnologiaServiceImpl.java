@@ -1,16 +1,14 @@
 package servicies.impl;
 
-
 import exceptions.TecnologiaNoEncontrada;
 import models.enitities.Tecnologia;
+import models.views.TecnologiaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.TecnologiaRepository;
 import servicies.TecnologiaService;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @Service
 public class TecnologiaServiceImpl implements TecnologiaService {
@@ -19,31 +17,35 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     TecnologiaRepository tecnologiaRepository;
 
 
-    public Tecnologia guardarTecnologia(Tecnologia tecnologia){
+    public void guardarTecnologia(TecnologiaDTO tecnologiaDTO){
+        Tecnologia tecnologia = Tecnologia.builder()
+                .tipoTecnologia(tecnologiaDTO.getTipoTecnologia())
+                .version(tecnologiaDTO.getVersion())
+                .build();
 
-        return tecnologiaRepository.save(tecnologia);
+         tecnologiaRepository.save(tecnologia);
     }
 
-    public List<Tecnologia> obtenerTecnologia(){
+    public List<Tecnologia> obtenerTecnologias(){
 
         return tecnologiaRepository.findAll();
     }
 
-    public void eliminarTecnologia(Tecnologia tecnologia){
+    public void eliminarTecnologiaPorId(Long idTecnologia){
 
-        tecnologiaRepository.delete(tecnologia);
+        tecnologiaRepository.deleteById(idTecnologia);
     }
 
-    public Tecnologia buscarTecnologiaPorId(Tecnologia tecnologia){
-        return tecnologiaRepository.findById(tecnologia.getIdTecnologia())
+    public Tecnologia buscarTecnologiaPorId(Long idTecnologia){
+        return tecnologiaRepository.findById(idTecnologia)
                 .orElseThrow(()-> new TecnologiaNoEncontrada("No se encontro la tecnologia"));
     }
 
-    public Tecnologia modificarTecnologia(Tecnologia tecnologia){
-        Tecnologia tecnologiaBuscada = tecnologiaRepository.findById(tecnologia.getIdTecnologia()).orElseThrow();
+    public Tecnologia modificarTecnologia(TecnologiaDTO tecnologiaDTO){
+        Tecnologia tecnologiaBuscada = this.buscarTecnologiaPorId(tecnologiaDTO.getIdTecnologia());
 
-        tecnologiaBuscada.setTipoTecnologia(tecnologia.getTipoTecnologia());
-        tecnologiaBuscada.setVersion(tecnologia.getVersion());
+        tecnologiaBuscada.setTipoTecnologia(tecnologiaDTO.getTipoTecnologia());
+        tecnologiaBuscada.setVersion(tecnologiaDTO.getVersion());
 
         return tecnologiaRepository.save(tecnologiaBuscada);
     }
