@@ -1,10 +1,8 @@
 package com.example.demo.models.views;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import com.example.demo.models.enitities.TipoDNI;
+import com.example.demo.models.enitities.TipoDocumento;
 
 import java.util.Date;
 
@@ -12,6 +10,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@Builder
 public class CandidatoDTO {
 
     private Long idCandidato;
@@ -20,7 +20,7 @@ public class CandidatoDTO {
 
     private String apellido;
 
-    private TipoDNI tipoDNI;
+    private TipoDocumento tipoDocumento;
 
     private String dni;
 

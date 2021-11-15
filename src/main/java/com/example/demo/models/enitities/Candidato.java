@@ -5,14 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -42,11 +35,12 @@ public class Candidato implements Serializable{
     private String apellido;
 
     @NotEmpty(message = "completar el tipo de DNI")
-    @JoinColumn(name = "id_tipo_dni", referencedColumnName = "id_tipo_dni")
-    @OneToOne
-    private TipoDNI tipoDNI;
+    @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
+    @ManyToOne()
+    private TipoDocumento tipoDocumento;
 
     @NotEmpty(message = "completar DNI")
+    @Column(unique = true)
     private String dni;
 
     @NotEmpty(message = "completar fecha de nacimiento")

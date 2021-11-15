@@ -4,15 +4,15 @@ package com.example.demo.models.views;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
+import lombok.ToString;
 
-@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class TipoDNIDto {
+@NoArgsConstructor
+@ToString
+public class TipoDocumentoDTO {
 
-    private Long idTipoDNI;
+    private Long idTipoDocumento;
 
     private String tipo;
 

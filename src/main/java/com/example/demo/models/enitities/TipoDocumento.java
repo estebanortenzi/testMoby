@@ -20,17 +20,17 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tipo_dni")
-public class TipoDNI implements Serializable {
+@Table(name = "tipo_documento")
+public class TipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tipo_dni")
-    private Long idTipoDNI;
+    @Column(name = "id_tipo_documento")
+    private Long idTipoDocumento;
 
-    @NotEmpty(message = "completar tipo dni")
+    @NotEmpty(message = "completar tipo documento")
     private String tipo;
 
 }

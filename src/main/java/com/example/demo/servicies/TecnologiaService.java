@@ -7,14 +7,16 @@ import java.util.List;
 
 public interface TecnologiaService {
 
-    void guardarTecnologia(TecnologiaDTO tecnologiaDTO);
+    TecnologiaDTO guardarTecnologia(TecnologiaDTO tecnologiaDTO);
 
-    void modificarTecnologia(TecnologiaDTO tecnologiaDTO);
+    TecnologiaDTO modificarTecnologia(TecnologiaDTO tecnologiaDTO);
 
-    List<Tecnologia> obtenerTecnologias();
+    List<TecnologiaDTO> obtenerTecnologias();
 
     void eliminarTecnologiaPorId(Long idTecnologia);
 
-    Tecnologia buscarTecnologiaPorId(Long idTecnologia);
+    TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia);
+
+    TecnologiaDTO buscarTecnologiaPorNombre(String nombre);
 
 }

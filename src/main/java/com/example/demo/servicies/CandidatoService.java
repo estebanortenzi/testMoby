@@ -8,16 +8,16 @@ import java.util.List;
 
 public interface CandidatoService {
 
-    void guardarCandidato(CandidatoDTO candidatoDTO);
+    CandidatoDTO guardarCandidato(CandidatoDTO candidatoDTO);
 
-    void modificarCandidato(CandidatoDTO candidatoDTO);
+    CandidatoDTO modificarCandidato(CandidatoDTO candidatoDTO);
 
-    List<Candidato> obtenerCandidatos();
+    List<CandidatoDTO> obtenerCandidatos();
 
     void eliminarCandidatoPorId(Long idCandidatoDTO);
 
-    Candidato buscarCandidatoPorId(Long idCandidato);
+    CandidatoDTO buscarCandidatoPorId(Long idCandidato);
 
-    Candidato buscarCandidatoPorDni(String dni);
+    CandidatoDTO buscarCandidatoPorDni(String dni);
 
 }

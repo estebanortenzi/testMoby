@@ -1,11 +1,15 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.models.enitities.CandidatoPorTecnologia;
+import com.example.demo.models.views.CandidatoPorTecnologiaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repositories.CandidatoPorTecnologiaRepository;
 import com.example.demo.servicies.CandidatoPorTecnologiaService;
 
+import javax.persistence.EntityExistsException;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -14,30 +18,18 @@ public class CandidatoPorTecnologiaImpl implements CandidatoPorTecnologiaService
     @Autowired
     CandidatoPorTecnologiaRepository candidatoPorTecnologiaRepository;
 
-    public CandidatoPorTecnologia guardarCandidatoPorTecnologia(CandidatoPorTecnologia candidatoPorTecnologia){
-        return candidatoPorTecnologiaRepository.save(candidatoPorTecnologia);
+    @Autowired
+    ModelMapper modelMapper;
+
+    public CandidatoPorTecnologiaDTO guardarCandidatoPorTecnologia(CandidatoPorTecnologiaDTO candidatoPorTecnologiaDTO){
+
+        CandidatoPorTecnologia candidatoPorTecnologia = candidatoPorTecnologiaRepository.save(modelMapper.map(candidatoPorTecnologiaDTO, CandidatoPorTecnologia.class));
+
+        CandidatoPorTecnologiaDTO candidatoPorTecnologiaDTO1 = modelMapper.map(candidatoPorTecnologia, CandidatoPorTecnologiaDTO.class);
+
+        return candidatoPorTecnologiaDTO1;
     }
 
-    public List<CandidatoPorTecnologia> obtenerCandidatosPorTecnologia(){
-        return candidatoPorTecnologiaRepository.findAll();
-    }
 
-    public void eliminarCandidatoPorTecnologia(CandidatoPorTecnologia candidatoPorTecnologia){
-        candidatoPorTecnologiaRepository.delete(candidatoPorTecnologia);
-    }
-
-    public CandidatoPorTecnologia buscarCandidatoPorTecnologiaPorId(CandidatoPorTecnologia candidatoPorTecnologia){
-        return candidatoPorTecnologiaRepository.findById(candidatoPorTecnologia.getIdCandidatoXTecnologia()).orElseThrow();
-    }
-
-    public CandidatoPorTecnologia modificarCandidatoPorTecnologia(CandidatoPorTecnologia candidatoPorTecnologia){
-        CandidatoPorTecnologia candidatoPorTecnologiaBuscado = candidatoPorTecnologiaRepository.findById(candidatoPorTecnologia.getIdCandidatoXTecnologia()).orElseThrow();
-
-        candidatoPorTecnologiaBuscado.setCandidato(candidatoPorTecnologia.getCandidato());
-        candidatoPorTecnologiaBuscado.setTecnologia(candidatoPorTecnologia.getTecnologia());
-        candidatoPorTecnologiaBuscado.setAniosExperiencia(candidatoPorTecnologia.getAniosExperiencia());
-
-        return candidatoPorTecnologiaRepository.save(candidatoPorTecnologiaBuscado);
-    }
 
 }

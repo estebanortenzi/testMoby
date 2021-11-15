@@ -1,15 +1,17 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.IdEncontradoException;
-import com.example.demo.exceptions.IdNoEncontradoException;
+import com.example.demo.exceptions.TecnologiaInexistente;
 import com.example.demo.models.enitities.Tecnologia;
 import com.example.demo.models.views.TecnologiaDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repositories.TecnologiaRepository;
 import com.example.demo.servicies.TecnologiaService;
 
 import javax.persistence.EntityExistsException;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -18,34 +20,41 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     @Autowired
     TecnologiaRepository tecnologiaRepository;
 
+    @Autowired
+    ModelMapper modelMapper;
 
-    public void guardarTecnologia(TecnologiaDTO tecnologiaDTO){
-        if(tecnologiaDTO.getIdTecnologia() != null){
-            throw new IdEncontradoException("La tecnologia tiene ID. Utilice modificarTecnologia");
-        }
-        Tecnologia tecnologia = Tecnologia.builder()
-                .nombre(tecnologiaDTO.getNombre())
-                .version(tecnologiaDTO.getVersion())
-                .build();
+    public TecnologiaDTO guardarTecnologia(TecnologiaDTO tecnologiaDTO){
 
-         tecnologiaRepository.save(tecnologia);
+        Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
+
+        Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
+
+        TecnologiaDTO tecnologiaDTO1 = modelMapper.map(tecnologia, TecnologiaDTO.class);
+
+        return  tecnologiaDTO1;
     }
 
-    public void modificarTecnologia(TecnologiaDTO tecnologiaDTO){
-        if(tecnologiaDTO.getIdTecnologia() == null){
-            throw new IdNoEncontradoException("No se puede modificar una tecnologa sin ID.");
-        }
-        Tecnologia tecnologia = Tecnologia.builder()
-                .nombre(tecnologiaDTO.getNombre())
-                .version(tecnologiaDTO.getVersion())
-                .build();
+    public TecnologiaDTO modificarTecnologia(TecnologiaDTO tecnologiaDTO){
 
-        tecnologiaRepository.save(tecnologia);
+        Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
+
+        Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
+
+        TecnologiaDTO tecnologiaDTO1 = modelMapper.map(tecnologia, TecnologiaDTO.class);
+
+        return  tecnologiaDTO1;
     }
 
-    public List<Tecnologia> obtenerTecnologias(){
+    public List<TecnologiaDTO> obtenerTecnologias(){
 
-        return tecnologiaRepository.findAll();
+        List<Tecnologia> tecnologias = tecnologiaRepository.findAll();
+        List<TecnologiaDTO> tecnologiasDTOS = new LinkedList<>();
+
+        for (Tecnologia tecnologia: tecnologias) {
+            tecnologiasDTOS.add(modelMapper.map(tecnologia, TecnologiaDTO.class));
+        }
+
+        return tecnologiasDTOS;
     }
 
     public void eliminarTecnologiaPorId(Long idTecnologia){
@@ -56,9 +65,28 @@ public class TecnologiaServiceImpl implements TecnologiaService {
         }
     }
 
-    public Tecnologia buscarTecnologiaPorId(Long idTecnologia){
-        return tecnologiaRepository.findById(idTecnologia)
+    public TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia){
+
+        Tecnologia tecnologia = tecnologiaRepository.findById(idTecnologia)
                 .orElseThrow(()-> new EntityExistsException("No se encontró el candidato"));
+
+        TecnologiaDTO tecnologiaDTO = modelMapper.map(tecnologia, TecnologiaDTO.class);
+
+        return tecnologiaDTO;
+    }
+
+    public TecnologiaDTO buscarTecnologiaPorNombre(String nombre){
+
+        Tecnologia tecnologia = tecnologiaRepository.findByNombre(nombre);
+
+        if(tecnologia == null){
+            throw new TecnologiaInexistente("No existe una tecnología con ese nombre");
+        }
+
+        TecnologiaDTO tecnologiaDTO = modelMapper.map(tecnologia, TecnologiaDTO.class);
+
+        return tecnologiaDTO;
     }
 
 }
+

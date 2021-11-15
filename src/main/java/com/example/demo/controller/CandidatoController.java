@@ -2,9 +2,10 @@ package com.example.demo.controller;
 
 
 import lombok.extern.java.Log;
-import com.example.demo.models.enitities.Candidato;
 import com.example.demo.models.views.CandidatoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,34 +26,39 @@ public class CandidatoController {
     @Autowired
     CandidatoService candidatoService;
 
+
     @PostMapping(value = "/guardarCandidato")
-    public void guardarCandidato(@RequestBody CandidatoDTO candidatoDTO){
-        candidatoService.guardarCandidato(candidatoDTO);
+    public ResponseEntity<CandidatoDTO> guardarCandidato(@RequestBody CandidatoDTO candidatoDTO){
+
+        return new ResponseEntity<> (candidatoService.guardarCandidato(candidatoDTO), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/modificarCandidato")
-    public void modificarCandidato(@RequestBody CandidatoDTO candidatoDTO){
-        candidatoService.modificarCandidato(candidatoDTO);
+    public ResponseEntity<CandidatoDTO> modificarCandidato(@RequestBody CandidatoDTO candidatoDTO){
+        return new ResponseEntity<> (candidatoService.modificarCandidato(candidatoDTO), HttpStatus.OK);
     }
 
     @GetMapping(value = "/obtenerCandidatos")
-    public List<Candidato> obtenerCandidatos(){
-        return candidatoService.obtenerCandidatos();
+    public ResponseEntity<List<CandidatoDTO>> obtenerCandidatos(){
+        return new ResponseEntity <> (candidatoService.obtenerCandidatos(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "buscarCandidato/{idCandidato}")
-    public Candidato buscarCandidatoPorId(@PathVariable("idCandidato") Long idCandidato){
-        return candidatoService.buscarCandidatoPorId(idCandidato);
+    @GetMapping(path = "/buscarCandidatoPorId/{idCandidato}")
+    public ResponseEntity<CandidatoDTO> buscarCandidatoPorId(@PathVariable Long idCandidato){
+        return new ResponseEntity<> (candidatoService.buscarCandidatoPorId(idCandidato), HttpStatus.OK);
     }
 
-    @GetMapping(path = "buscarCandidato/{dniCandidato}")
-    public Candidato buscarCandidatoPorDni(@PathVariable("dniCandidato") String dniCandidato){
-        return candidatoService.buscarCandidatoPorDni(dniCandidato);
+    @GetMapping(path = "/buscarCandidatoPorDni/{dniCandidato}")
+    public ResponseEntity<CandidatoDTO> buscarCandidatoPorDni(@PathVariable String dniCandidato){
+        return new ResponseEntity<> (candidatoService.buscarCandidatoPorDni(dniCandidato), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/eliminarCandidatoPorId/{idCandidato}")
-    public void eliminarCandidatoPorId(@PathVariable("idCandidato") Long idCandidato){
+    public ResponseEntity eliminarCandidatoPorId(@PathVariable Long idCandidato){
         candidatoService.eliminarCandidatoPorId(idCandidato);
+        return new ResponseEntity (HttpStatus.OK);
     }
+
+
 
 }
