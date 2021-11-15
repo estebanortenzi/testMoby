@@ -25,9 +25,14 @@ public class CandidatoController {
     @Autowired
     CandidatoService candidatoService;
 
-    @PostMapping(value = "/guardarCandidato") //si en Postman le pongo el email, modifica, sino lo crea
+    @PostMapping(value = "/guardarCandidato")
     public void guardarCandidato(@RequestBody CandidatoDTO candidatoDTO){
         candidatoService.guardarCandidato(candidatoDTO);
+    }
+
+    @PostMapping(value = "/modificarCandidato")
+    public void modificarCandidato(@RequestBody CandidatoDTO candidatoDTO){
+        candidatoService.modificarCandidato(candidatoDTO);
     }
 
     @GetMapping(value = "/obtenerCandidatos")
@@ -35,16 +40,15 @@ public class CandidatoController {
         return candidatoService.obtenerCandidatos();
     }
 
-    @GetMapping(path = "/{idCandidato}")
+    @GetMapping(path = "buscarCandidato/{idCandidato}")
     public Candidato buscarCandidatoPorId(@PathVariable("idCandidato") Long idCandidato){
         return candidatoService.buscarCandidatoPorId(idCandidato);
     }
-/*
-    @GetMapping(path = "/buscarCandidatoPorTecnologia")
-    public List<Candidato> buscarCandidatoPorTecnologia(@RequestParam("tecnologia") String tecn){
-        return candidatoServicie.findByTecnologia(tecn);
-    } //  /api/candidato/buscarCandidatoPorTecnologia?tecnologia=tecn
-*/
+
+    @GetMapping(path = "buscarCandidato/{dniCandidato}")
+    public Candidato buscarCandidatoPorDni(@PathVariable("dniCandidato") String dniCandidato){
+        return candidatoService.buscarCandidatoPorDni(dniCandidato);
+    }
 
     @DeleteMapping(value = "/eliminarCandidatoPorId/{idCandidato}")
     public void eliminarCandidatoPorId(@PathVariable("idCandidato") Long idCandidato){

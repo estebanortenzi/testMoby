@@ -10,12 +10,14 @@ public interface CandidatoService {
 
     void guardarCandidato(CandidatoDTO candidatoDTO);
 
+    void modificarCandidato(CandidatoDTO candidatoDTO);
+
     List<Candidato> obtenerCandidatos();
 
     void eliminarCandidatoPorId(Long idCandidatoDTO);
 
     Candidato buscarCandidatoPorId(Long idCandidato);
 
-   // List<Candidato> findByTecnologia(String tecnologia);
+    Candidato buscarCandidatoPorDni(String dni);
 
 }

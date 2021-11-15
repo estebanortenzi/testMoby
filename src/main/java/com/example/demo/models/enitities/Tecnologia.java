@@ -29,6 +29,8 @@ public class Tecnologia implements Serializable {
     @Column(name = "id_tecnologia")
     private Long idTecnologia;
 
+    private String nombre;
+
     private String version; // String por si es 3.2.1
 
 }

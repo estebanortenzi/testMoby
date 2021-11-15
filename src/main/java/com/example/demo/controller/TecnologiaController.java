@@ -28,6 +28,11 @@ public class TecnologiaController {
         tecnologiaService.guardarTecnologia(tecnologiaDTO);
     }
 
+    @PostMapping(value = "/modificarTecnologia")
+    public void modificarTecnologia(@RequestBody TecnologiaDTO tecnologiaDTO){
+        tecnologiaService.modificarTecnologia(tecnologiaDTO);
+    }
+
     @GetMapping(value = "/obtenerTecnologias")
     public List<Tecnologia> obtenerTecnologias(){
         return tecnologiaService.obtenerTecnologias();

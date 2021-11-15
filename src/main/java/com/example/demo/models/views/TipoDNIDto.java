@@ -1,18 +1,19 @@
 package com.example.demo.models.views;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.Entity;
 
+@Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class TecnologiaDTO {
+@AllArgsConstructor
+public class TipoDNIDto {
 
-    private Long idTecnologia;
+    private Long idTipoDNI;
 
-    private String nombre;
-
-    private String version;
+    private String tipo;
 
 }

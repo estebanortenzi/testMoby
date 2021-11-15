@@ -9,6 +9,8 @@ public interface TecnologiaService {
 
     void guardarTecnologia(TecnologiaDTO tecnologiaDTO);
 
+    void modificarTecnologia(TecnologiaDTO tecnologiaDTO);
+
     List<Tecnologia> obtenerTecnologias();
 
     void eliminarTecnologiaPorId(Long idTecnologia);

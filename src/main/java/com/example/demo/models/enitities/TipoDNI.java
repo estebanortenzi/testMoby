@@ -5,8 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 
 @Entity
@@ -24,7 +30,7 @@ public class TipoDNI implements Serializable {
     @Column(name = "id_tipo_dni")
     private Long idTipoDNI;
 
-    @NotEmpty(message = "completar nombre")
+    @NotEmpty(message = "completar tipo dni")
     private String tipo;
 
 }
