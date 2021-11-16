@@ -1,6 +1,7 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.IdEncontradoException;
+import com.example.demo.exceptions.IdNoEncontradoException;
 import com.example.demo.models.enitities.Tecnologia;
 import com.example.demo.models.views.TecnologiaDTO;
 import org.modelmapper.ModelMapper;
@@ -25,6 +26,10 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     @Override
     public TecnologiaDTO guardarTecnologia(TecnologiaDTO tecnologiaDTO){
 
+        if(tecnologiaRepository.findById(tecnologiaDTO.getIdTecnologia()).orElseThrow() != null){
+            throw new IdEncontradoException("Ya existe una tecnologia con ese ID.");
+        }
+
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 
         Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
@@ -34,6 +39,10 @@ public class TecnologiaServiceImpl implements TecnologiaService {
 
     @Override
     public TecnologiaDTO modificarTecnologia(TecnologiaDTO tecnologiaDTO){
+
+        if(tecnologiaRepository.findById(tecnologiaDTO.getIdTecnologia()).orElseThrow() == null){
+            throw new IdNoEncontradoException("No se encuentra una tecnologia con ese ID.");
+        }
 
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 

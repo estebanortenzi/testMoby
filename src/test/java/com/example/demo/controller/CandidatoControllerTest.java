@@ -26,9 +26,6 @@ public class CandidatoControllerTest {
     @MockBean
     CandidatoService candidatoService;
 
-    @MockBean
-    CandidatoPorTecnologiaService candidatoPorTecnologiaService;
-
     @Autowired
     private MockMvc mockMvc;
 

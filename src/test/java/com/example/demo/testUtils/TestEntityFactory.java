@@ -66,7 +66,7 @@ public class TestEntityFactory {
         return listaCandidatosDTO;
     }
 
-    public static TecnologiaDTO getTecnologiaDTO(){
+    public static TecnologiaDTO getTecnologiaDTOConId(){
         return TecnologiaDTO.builder()
                 .idTecnologia(ID_TECNOLOGIA_DTO)
                 .nombre("Java")
@@ -74,11 +74,19 @@ public class TestEntityFactory {
                 .build();
     }
 
+    public static TecnologiaDTO getTecnologiaDTOConIdModificado(){
+        return TecnologiaDTO.builder()
+                .idTecnologia(ID_TECNOLOGIA_DTO)
+                .nombre("Java")
+                .version("9")
+                .build();
+    }
+
     public static CandidatoPorTecnologiaDTO getCandidatoPorTecnologiaDTO(){
         return CandidatoPorTecnologiaDTO.builder()
                 .idCandidatoXTecnologia(ID_CANDIDATO_X_TECNOLOGIA_DTO)
                 .candidatoDTO(getCandidatoDTOConId())
-                .tecnologiaDTO(getTecnologiaDTO())
+                .tecnologiaDTO(getTecnologiaDTOConId())
                 .build();
     }
 
@@ -93,8 +101,29 @@ public class TestEntityFactory {
         return listaCandidatosPorTecnologiaDTO;
     }
 
+    public static List<TecnologiaDTO> getListaTecnologiasDTO(){
+        List<TecnologiaDTO> listaTecnologiasDTO = new LinkedList<>();
+
+        listaTecnologiasDTO.add(getTecnologiaDTOConId());
+
+        return listaTecnologiasDTO;
+    }
+
     public static String getCandidatoDtoConIdJson(){return new Gson().toJson(getCandidatoDTOConId());}
 
     public static String getCandidatoDTOConIdModificadoJson(){return new Gson().toJson(getCandidatoDTOConIdModificado());}
+
+    public static TecnologiaDTO getTecnologiaDTOSinId(){
+        return TecnologiaDTO.builder()
+                .nombre("Java")
+                .version("8")
+                .build();
+    }
+
+    public static String getTecnologiaDTOConIdJson(){return new Gson().toJson(getTecnologiaDTOConId());}
+
+    public static String getTecnologiaDTOSinIdJson(){return new Gson().toJson(getTecnologiaDTOSinId());}
+
+    public static String getTecnologiaDTOConIdModificadoJson(){return new Gson().toJson(getTecnologiaDTOConIdModificado());}
 
 }
