@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.models.views.CandidatoPorTecnologiaDTO;
 import lombok.extern.java.Log;
 import com.example.demo.models.views.CandidatoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,10 @@ public class CandidatoController {
         return new ResponseEntity (HttpStatus.OK);
     }
 
+    @GetMapping(value = "/listarCandidatosPorTecnologia/{nombreTecnologia}")
+    public ResponseEntity<List<CandidatoPorTecnologiaDTO>> listarCandidatosPorTecnologia(@PathVariable String nombreTecnologia){
+        return new ResponseEntity<>(candidatoService.listarCandidatoPorTecnologia(nombreTecnologia), HttpStatus.OK);
 
+    }
 
 }

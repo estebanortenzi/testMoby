@@ -36,7 +36,7 @@ public class Candidato implements Serializable{
 
     @NotEmpty(message = "completar el tipo de DNI")
     @JoinColumn(name = "id_tipo_documento", referencedColumnName = "id_tipo_documento")
-    @ManyToOne()
+    @ManyToOne
     private TipoDocumento tipoDocumento;
 
     @NotEmpty(message = "completar DNI")

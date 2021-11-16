@@ -2,23 +2,21 @@ package com.example.demo.models.views;
 
 import com.example.demo.models.enitities.Candidato;
 import com.example.demo.models.enitities.Tecnologia;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class CandidatoPorTecnologiaDTO {
 
     private Long idCandidatoXTecnologia;
 
-    private Candidato candidato;
+    private CandidatoDTO candidatoDTO;
 
-    private Tecnologia tecnologia;
+    private TecnologiaDTO tecnologiaDTO;
 
     private int aniosExperiencia;
 

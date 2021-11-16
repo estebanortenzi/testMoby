@@ -1,7 +1,6 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.IdEncontradoException;
-import com.example.demo.exceptions.TecnologiaInexistente;
 import com.example.demo.models.enitities.Tecnologia;
 import com.example.demo.models.views.TecnologiaDTO;
 import org.modelmapper.ModelMapper;
@@ -23,28 +22,27 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     @Autowired
     ModelMapper modelMapper;
 
+    @Override
     public TecnologiaDTO guardarTecnologia(TecnologiaDTO tecnologiaDTO){
 
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 
         Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
 
-        TecnologiaDTO tecnologiaDTO1 = modelMapper.map(tecnologia, TecnologiaDTO.class);
-
-        return  tecnologiaDTO1;
+        return modelMapper.map(tecnologia, TecnologiaDTO.class);
     }
 
+    @Override
     public TecnologiaDTO modificarTecnologia(TecnologiaDTO tecnologiaDTO){
 
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 
         Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
 
-        TecnologiaDTO tecnologiaDTO1 = modelMapper.map(tecnologia, TecnologiaDTO.class);
-
-        return  tecnologiaDTO1;
+        return modelMapper.map(tecnologia, TecnologiaDTO.class);
     }
 
+    @Override
     public List<TecnologiaDTO> obtenerTecnologias(){
 
         List<Tecnologia> tecnologias = tecnologiaRepository.findAll();
@@ -57,6 +55,7 @@ public class TecnologiaServiceImpl implements TecnologiaService {
         return tecnologiasDTOS;
     }
 
+    @Override
     public void eliminarTecnologiaPorId(Long idTecnologia){
         if(tecnologiaRepository.findById(idTecnologia).orElseThrow() == null){
             throw new IdEncontradoException("No se encontró una tecnologia con ese ID.");
@@ -65,27 +64,13 @@ public class TecnologiaServiceImpl implements TecnologiaService {
         }
     }
 
+    @Override
     public TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia){
 
         Tecnologia tecnologia = tecnologiaRepository.findById(idTecnologia)
                 .orElseThrow(()-> new EntityExistsException("No se encontró el candidato"));
 
-        TecnologiaDTO tecnologiaDTO = modelMapper.map(tecnologia, TecnologiaDTO.class);
-
-        return tecnologiaDTO;
-    }
-
-    public TecnologiaDTO buscarTecnologiaPorNombre(String nombre){
-
-        Tecnologia tecnologia = tecnologiaRepository.findByNombre(nombre);
-
-        if(tecnologia == null){
-            throw new TecnologiaInexistente("No existe una tecnología con ese nombre");
-        }
-
-        TecnologiaDTO tecnologiaDTO = modelMapper.map(tecnologia, TecnologiaDTO.class);
-
-        return tecnologiaDTO;
+        return modelMapper.map(tecnologia, TecnologiaDTO.class);
     }
 
 }

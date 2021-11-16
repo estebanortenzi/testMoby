@@ -17,6 +17,4 @@ public interface TecnologiaService {
 
     TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia);
 
-    TecnologiaDTO buscarTecnologiaPorNombre(String nombre);
-
 }

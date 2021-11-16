@@ -2,6 +2,7 @@ package com.example.demo.servicies;
 
 import com.example.demo.models.enitities.Candidato;
 import com.example.demo.models.views.CandidatoDTO;
+import com.example.demo.models.views.CandidatoPorTecnologiaDTO;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface CandidatoService {
 
     CandidatoDTO buscarCandidatoPorDni(String dni);
 
+    List<CandidatoPorTecnologiaDTO> listarCandidatoPorTecnologia(String tecnologia);
 }

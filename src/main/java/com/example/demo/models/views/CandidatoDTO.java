@@ -1,5 +1,6 @@
 package com.example.demo.models.views;
 
+import com.example.demo.models.enitities.Tecnologia;
 import lombok.*;
 
 import com.example.demo.models.enitities.TipoDocumento;
@@ -25,5 +26,4 @@ public class CandidatoDTO {
     private String dni;
 
     private Date fechaNacimiento;
-
 }

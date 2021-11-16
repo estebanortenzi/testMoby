@@ -26,27 +26,22 @@ public class TecnologiaController {
 
     @PostMapping(value = "/guardarTecnologia")
     public ResponseEntity<TecnologiaDTO> guardarTecnologia(@RequestBody TecnologiaDTO tecnologiaDTO){
-        return new ResponseEntity<TecnologiaDTO> (tecnologiaService.guardarTecnologia(tecnologiaDTO), HttpStatus.CREATED);
+        return new ResponseEntity<> (tecnologiaService.guardarTecnologia(tecnologiaDTO), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/modificarTecnologia")
     public ResponseEntity<TecnologiaDTO> modificarTecnologia(@RequestBody TecnologiaDTO tecnologiaDTO){
-        return new ResponseEntity<TecnologiaDTO> (tecnologiaService.modificarTecnologia(tecnologiaDTO), HttpStatus.OK);
+        return new ResponseEntity<> (tecnologiaService.modificarTecnologia(tecnologiaDTO), HttpStatus.OK);
     }
 
     @GetMapping(value = "/obtenerTecnologias")
     public ResponseEntity<List<TecnologiaDTO>> obtenerTecnologias(){
-        return new ResponseEntity<List<TecnologiaDTO>>(tecnologiaService.obtenerTecnologias(), HttpStatus.OK);
+        return new ResponseEntity<>(tecnologiaService.obtenerTecnologias(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/buscarTecnologiaPorId/{idTecnologia}")
     public ResponseEntity<TecnologiaDTO> buscarTecnologiaPorId(@PathVariable Long idTecnologia){
-        return new ResponseEntity<TecnologiaDTO> (tecnologiaService.buscarTecnologiaPorId(idTecnologia), HttpStatus.OK);
-    }
-
-    @GetMapping(path = "/buscarTecnologiaPorNombre/{nombreTecnologia}")
-    public ResponseEntity<TecnologiaDTO> buscarTecnologiaPorNombre(@PathVariable String nombreTecnologia){
-        return new ResponseEntity<TecnologiaDTO> (tecnologiaService.buscarTecnologiaPorNombre(nombreTecnologia), HttpStatus.OK);
+        return new ResponseEntity<> (tecnologiaService.buscarTecnologiaPorId(idTecnologia), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/eliminarTecnologiaPorId/{idTecnologia}")
