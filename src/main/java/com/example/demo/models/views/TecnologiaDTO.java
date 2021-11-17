@@ -1,12 +1,14 @@
 package com.example.demo.models.views;
 
-import com.example.demo.models.enitities.Candidato;
-import lombok.*;
+
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 public class TecnologiaDTO {
 

@@ -17,8 +17,6 @@ public interface CandidatoService {
 
     void eliminarCandidatoPorId(Long idCandidatoDTO);
 
-    CandidatoDTO buscarCandidatoPorId(Long idCandidato);
-
     CandidatoDTO buscarCandidatoPorDni(String dni);
 
     List<CandidatoPorTecnologiaDTO> listarCandidatoPorTecnologia(String tecnologia);

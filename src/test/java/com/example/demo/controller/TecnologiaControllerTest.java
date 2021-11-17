@@ -3,9 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.exceptions.IdEncontradoException;
 import com.example.demo.exceptions.IdNoEncontradoException;
 import com.example.demo.servicies.TecnologiaService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,11 +24,6 @@ public class TecnologiaControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     @WithMockUser
@@ -79,17 +72,17 @@ public class TecnologiaControllerTest {
     @Test
     @WithMockUser
     void buscarTecnologiaPorIdTest() throws Exception{
-        when(tecnologiaService.buscarTecnologiaPorId(ID_TECNOLOGIA_DTO)).thenReturn(getTecnologiaDTOConId());
-        mockMvc.perform(get("/api/tecnologia/buscarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA_DTO))
+        when(tecnologiaService.buscarTecnologiaPorId(ID_TECNOLOGIA)).thenReturn(getTecnologiaDTOConId());
+        mockMvc.perform(get("/api/tecnologia/buscarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA))
                 .andExpect(status().isOk());
     }
 
     @Test
     @WithMockUser
     void eliminarTecnologiaTest() throws Exception{
-        mockMvc.perform(delete("/api/tecnologia/eliminarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA_DTO))
+        mockMvc.perform(delete("/api/tecnologia/eliminarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA))
                 .andExpect(status().isOk());
-        verify(tecnologiaService, times(1)).eliminarTecnologiaPorId(ID_TECNOLOGIA_DTO);
+        verify(tecnologiaService, times(1)).eliminarTecnologiaPorId(ID_TECNOLOGIA);
     }
 
 }

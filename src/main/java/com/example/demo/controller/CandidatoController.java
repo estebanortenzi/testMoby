@@ -44,11 +44,6 @@ public class CandidatoController {
         return new ResponseEntity <> (candidatoService.obtenerCandidatos(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/buscarCandidatoPorId/{idCandidato}")
-    public ResponseEntity<CandidatoDTO> buscarCandidatoPorId(@PathVariable Long idCandidato){
-        return new ResponseEntity<> (candidatoService.buscarCandidatoPorId(idCandidato), HttpStatus.OK);
-    }
-
     @GetMapping(path = "/buscarCandidatoPorDni/{dniCandidato}")
     public ResponseEntity<CandidatoDTO> buscarCandidatoPorDni(@PathVariable String dniCandidato){
         return new ResponseEntity<> (candidatoService.buscarCandidatoPorDni(dniCandidato), HttpStatus.OK);

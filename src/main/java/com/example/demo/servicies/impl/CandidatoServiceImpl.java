@@ -1,7 +1,6 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.DniInexistenteExcpetion;
-import com.example.demo.exceptions.IdEncontradoException;
 import com.example.demo.exceptions.IdNoEncontradoException;
 import com.example.demo.models.enitities.Candidato;
 import com.example.demo.models.enitities.CandidatoPorTecnologia;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.repositories.CandidatoRepository;
 import com.example.demo.servicies.CandidatoService;
 
-import javax.persistence.EntityExistsException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -82,30 +80,19 @@ public class CandidatoServiceImpl implements CandidatoService {
 
     @Override
     public void eliminarCandidatoPorId(Long idCandidatoDTO){
-
-        if(candidatoRepository.findById(idCandidatoDTO).orElseThrow() == null){
-            throw new IdEncontradoException("No se encontró un candidato con ese ID.");
-        }else{
-            candidatoRepository.deleteById(idCandidatoDTO);
-            log.info("Candidato borrado exitosamente.");
-        }
-    }
-
-    @Override
-    public CandidatoDTO buscarCandidatoPorId(Long idCandidato){
-
-        Candidato candidato = candidatoRepository.findById(idCandidato).orElseThrow(() -> new EntityExistsException("No se encontró el candidato"));//Supplier, no recibe parametros porque es un proveedor
-
-        return modelMapper.map(candidato, CandidatoDTO.class);
+        candidatoRepository.deleteById(idCandidatoDTO);
+        log.info("Candidato borrado exitosamente.");
     }
 
     @Override
     public CandidatoDTO buscarCandidatoPorDni(String dni){
 
         Candidato candidato = candidatoRepository.findByDni(dni);
+
         if(candidato == null){
             throw new DniInexistenteExcpetion("No se encuentra un candidato con ese DNI");
         }
+
         return modelMapper.map(candidato, CandidatoDTO.class);
     }
 

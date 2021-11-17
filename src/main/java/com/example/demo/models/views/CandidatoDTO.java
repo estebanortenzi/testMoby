@@ -1,7 +1,9 @@
 package com.example.demo.models.views;
 
-import com.example.demo.models.enitities.Tecnologia;
-import lombok.*;
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 import com.example.demo.models.enitities.TipoDocumento;
 
@@ -11,7 +13,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 public class CandidatoDTO {
 

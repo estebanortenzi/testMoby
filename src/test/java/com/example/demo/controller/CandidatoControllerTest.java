@@ -2,11 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.exceptions.DniInexistenteExcpetion;
 import com.example.demo.exceptions.IdNoEncontradoException;
-import com.example.demo.servicies.CandidatoPorTecnologiaService;
 import com.example.demo.servicies.CandidatoService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,11 +25,6 @@ public class CandidatoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     @WithMockUser
@@ -82,24 +74,16 @@ public class CandidatoControllerTest {
      @Test
     @WithMockUser
     void eliminarCandidatoTest() throws Exception{
-        mockMvc.perform(delete("/api/candidato/eliminarCandidatoPorId/{idCandidato}", ID_CANDIDATO_DTO))
+        mockMvc.perform(delete("/api/candidato/eliminarCandidatoPorId/{idCandidato}", ID_CANDIDATO))
                  .andExpect(status().isOk());
-         verify(candidatoService, times(1)).eliminarCandidatoPorId(ID_CANDIDATO_DTO);
-     }
-
-     @Test
-    @WithMockUser
-    void buscarCandidatoPorIdTest() throws Exception{
-         when(candidatoService.buscarCandidatoPorId(ID_CANDIDATO_DTO)).thenReturn(getCandidatoDTOConId());
-         mockMvc.perform(get("/api/candidato/buscarCandidatoPorId/{idCandidato}", ID_CANDIDATO_DTO))
-                 .andExpect(status().isOk());
+         verify(candidatoService, times(1)).eliminarCandidatoPorId(ID_CANDIDATO);
      }
 
     @Test
     @WithMockUser
     void buscarCandidatoPorDniTest() throws Exception{
-        when(candidatoService.buscarCandidatoPorDni(DNI_CANDIDATO_DTO)).thenReturn(getCandidatoDTOConId());
-        mockMvc.perform(get("/api/candidato/buscarCandidatoPorDni/{dniCandidato}", DNI_CANDIDATO_DTO))
+        when(candidatoService.buscarCandidatoPorDni(DNI_CANDIDATO)).thenReturn(getCandidatoDTOConId());
+        mockMvc.perform(get("/api/candidato/buscarCandidatoPorDni/{dniCandidato}", DNI_CANDIDATO))
                 .andExpect(status().isOk());
     }
 
