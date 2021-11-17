@@ -15,6 +15,4 @@ public interface TecnologiaService {
 
     void eliminarTecnologiaPorId(Long idTecnologia);
 
-    TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia);
-
 }

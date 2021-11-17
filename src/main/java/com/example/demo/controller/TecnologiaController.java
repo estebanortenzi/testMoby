@@ -39,11 +39,6 @@ public class TecnologiaController {
         return new ResponseEntity<>(tecnologiaService.obtenerTecnologias(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/buscarTecnologiaPorId/{idTecnologia}")
-    public ResponseEntity<TecnologiaDTO> buscarTecnologiaPorId(@PathVariable Long idTecnologia){
-        return new ResponseEntity<> (tecnologiaService.buscarTecnologiaPorId(idTecnologia), HttpStatus.OK);
-    }
-
     @DeleteMapping(value = "/eliminarTecnologiaPorId/{idTecnologia}")
     public ResponseEntity eliminarTecnologiaPorId(@PathVariable Long idTecnologia){
         tecnologiaService.eliminarTecnologiaPorId(idTecnologia);

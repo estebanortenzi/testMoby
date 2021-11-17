@@ -71,14 +71,6 @@ public class TecnologiaControllerTest {
 
     @Test
     @WithMockUser
-    void buscarTecnologiaPorIdTest() throws Exception{
-        when(tecnologiaService.buscarTecnologiaPorId(ID_TECNOLOGIA)).thenReturn(getTecnologiaDTOConId());
-        mockMvc.perform(get("/api/tecnologia/buscarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @WithMockUser
     void eliminarTecnologiaTest() throws Exception{
         mockMvc.perform(delete("/api/tecnologia/eliminarTecnologiaPorId/{idTecnologia}", ID_TECNOLOGIA))
                 .andExpect(status().isOk());

@@ -184,4 +184,19 @@ public class TestEntityFactory {
         return listaCandidatosPorTecnologia;
     }
 
+    public static Tecnologia getTecnologiaSinId(){
+        return Tecnologia.builder()
+                .nombre(NOMBRE_TECNOLOGIA)
+                .version("8")
+                .build();
+    }
+
+    public static List<Tecnologia> getListaTecnologias(){
+        List<Tecnologia> listaTecnologias = new LinkedList<>();
+
+        listaTecnologias.add(getTecnologiaConId());
+
+        return listaTecnologias;
+    }
+
 }

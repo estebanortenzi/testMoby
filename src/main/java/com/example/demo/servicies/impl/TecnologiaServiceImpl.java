@@ -1,19 +1,19 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.IdEncontradoException;
-import com.example.demo.exceptions.IdNoEncontradoException;
 import com.example.demo.models.enitities.Tecnologia;
 import com.example.demo.models.views.TecnologiaDTO;
+import lombok.extern.java.Log;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repositories.TecnologiaRepository;
 import com.example.demo.servicies.TecnologiaService;
 
-import javax.persistence.EntityExistsException;
 import java.util.LinkedList;
 import java.util.List;
 
+@Log
 @Service
 public class TecnologiaServiceImpl implements TecnologiaService {
 
@@ -26,10 +26,6 @@ public class TecnologiaServiceImpl implements TecnologiaService {
     @Override
     public TecnologiaDTO guardarTecnologia(TecnologiaDTO tecnologiaDTO){
 
-        if(tecnologiaRepository.findById(tecnologiaDTO.getIdTecnologia()).orElseThrow() != null){
-            throw new IdEncontradoException("Ya existe una tecnologia con ese ID.");
-        }
-
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 
         Tecnologia tecnologia = tecnologiaRepository.save(nuevo);
@@ -39,10 +35,6 @@ public class TecnologiaServiceImpl implements TecnologiaService {
 
     @Override
     public TecnologiaDTO modificarTecnologia(TecnologiaDTO tecnologiaDTO){
-
-        if(tecnologiaRepository.findById(tecnologiaDTO.getIdTecnologia()).orElseThrow() == null){
-            throw new IdNoEncontradoException("No se encuentra una tecnologia con ese ID.");
-        }
 
         Tecnologia nuevo = modelMapper.map(tecnologiaDTO, Tecnologia.class);
 
@@ -66,20 +58,13 @@ public class TecnologiaServiceImpl implements TecnologiaService {
 
     @Override
     public void eliminarTecnologiaPorId(Long idTecnologia){
+        /*
         if(tecnologiaRepository.findById(idTecnologia).orElseThrow() == null){
             throw new IdEncontradoException("No se encontró una tecnologia con ese ID.");
-        }else{
-            tecnologiaRepository.deleteById(idTecnologia);
         }
-    }
-
-    @Override
-    public TecnologiaDTO buscarTecnologiaPorId(Long idTecnologia){
-
-        Tecnologia tecnologia = tecnologiaRepository.findById(idTecnologia)
-                .orElseThrow(()-> new EntityExistsException("No se encontró el candidato"));
-
-        return modelMapper.map(tecnologia, TecnologiaDTO.class);
+        */
+            tecnologiaRepository.deleteById(idTecnologia);
+            log.info("Tecnologia eliminada satisfactoriamente.");
     }
 
 }
