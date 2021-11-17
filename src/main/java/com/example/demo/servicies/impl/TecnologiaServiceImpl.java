@@ -1,6 +1,7 @@
 package com.example.demo.servicies.impl;
 
 import com.example.demo.exceptions.IdEncontradoException;
+import com.example.demo.exceptions.IdNoEncontradoException;
 import com.example.demo.models.enitities.Tecnologia;
 import com.example.demo.models.views.TecnologiaDTO;
 import lombok.extern.java.Log;
@@ -58,13 +59,14 @@ public class TecnologiaServiceImpl implements TecnologiaService {
 
     @Override
     public void eliminarTecnologiaPorId(Long idTecnologia){
-        /*
-        if(tecnologiaRepository.findById(idTecnologia).orElseThrow() == null){
-            throw new IdEncontradoException("No se encontró una tecnologia con ese ID.");
-        }
-        */
+
+        Tecnologia tecnologia = tecnologiaRepository.findById(idTecnologia).
+                orElseThrow(()-> new IdNoEncontradoException("No se encontro una tecnologia con ese ID."));
+
+        if(tecnologia != null){
             tecnologiaRepository.deleteById(idTecnologia);
             log.info("Tecnologia eliminada satisfactoriamente.");
+        }
     }
 
 }
