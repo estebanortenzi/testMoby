@@ -85,7 +85,7 @@ public class TecnologiaServiceImplTest {
     @Test
     @WithMockUser
     void eliminarTecnologiaFailTest(){
-        when(tecnologiaRepository.findById(ID_TECNOLOGIA)).thenThrow(IdNoEncontradoException.class);
+        //when(tecnologiaRepository.findById(ID_TECNOLOGIA)).thenThrow(IdNoEncontradoException.class);
         assertThrows(IdNoEncontradoException.class, ()-> tecnologiaServiceImpl.eliminarTecnologiaPorId(ID_TECNOLOGIA));
     }
 
