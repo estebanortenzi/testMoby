@@ -38,9 +38,6 @@ public class TecnologiaServiceImplTest {
     @MockBean
     TecnologiaService tecnologiaService;
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @Spy
     private ModelMapper modelMapper;
 

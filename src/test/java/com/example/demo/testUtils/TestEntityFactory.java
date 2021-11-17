@@ -199,4 +199,18 @@ public class TestEntityFactory {
         return listaTecnologias;
     }
 
+    public static CandidatoPorTecnologiaDTO getCandidatoPorTecnologiaDTOSinId(){
+        return CandidatoPorTecnologiaDTO.builder()
+                .candidatoDTO(getCandidatoDTOConId())
+                .tecnologiaDTO(getTecnologiaDTOConId())
+                .build();
+    }
+
+    public static CandidatoPorTecnologia getCandidatoPorTecnologiaSinId(){
+        return CandidatoPorTecnologia.builder()
+                .candidato(getCandidatoConId())
+                .tecnologia(getTecnologiaConId())
+                .build();
+    }
+
 }

@@ -16,11 +16,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
@@ -41,10 +39,7 @@ public class CandidatoServiceImplTest {
     CandidatoPorTecnologiaRepository candidatoPorTecnologiaRepository;
 
     @MockBean
-    CandidatoService candidatoService;
-
-    @Autowired
-    private MockMvc mockMvc;
+    CandidatoService candidatoService;  // Si no está se rompen todos los tests.
 
     @Spy
     private ModelMapper modelMapper;

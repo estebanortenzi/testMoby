@@ -35,10 +35,11 @@ public class CandidatoPorTecnologiaServiceImpl implements CandidatoPorTecnologia
     @Override
     public CandidatoPorTecnologiaDTO modificarCandidatoPorTecnologia(CandidatoPorTecnologiaDTO candidatoPorTecnologiaDTO){
 
+        /*
         if(candidatoPorTecnologiaRepository.findById(candidatoPorTecnologiaDTO.getIdCandidatoXTecnologia()).orElseThrow() == null){
             throw new IdNoEncontradoException("No se encontro el ID");
         }
-
+        */
         CandidatoPorTecnologia candPorTec = modelMapper.map(candidatoPorTecnologiaDTO, CandidatoPorTecnologia.class);
 
         CandidatoPorTecnologia candidatoPorTecnologia = candidatoPorTecnologiaRepository.save(candPorTec);
