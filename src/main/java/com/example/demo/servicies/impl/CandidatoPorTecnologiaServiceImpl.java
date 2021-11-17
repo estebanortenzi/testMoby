@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Service
-public class CandidatoPorTecnologiaImpl implements CandidatoPorTecnologiaService {
+public class CandidatoPorTecnologiaServiceImpl implements CandidatoPorTecnologiaService {
 
     @Autowired
     CandidatoPorTecnologiaRepository candidatoPorTecnologiaRepository;
